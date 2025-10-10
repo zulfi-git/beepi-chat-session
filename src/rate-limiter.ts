@@ -5,6 +5,9 @@ import { RateLimitEntry } from './types';
  * Stores rate limit state in memory (per-worker instance)
  */
 class RateLimiter {
+  private static readonly CLEANUP_REQUEST_THRESHOLD = 100;
+  private static readonly CLEANUP_TIME_THRESHOLD = 300000; // 5 minutes (300 seconds) in milliseconds
+  
   private buckets: Map<string, RateLimitEntry>;
   private readonly maxTokens: number;
   private readonly refillRate: number; // tokens per second
@@ -27,9 +30,10 @@ class RateLimiter {
   isAllowed(ip: string): boolean {
     const now = Date.now();
     
-    // Trigger cleanup every 100 requests or every 5 minutes (300,000ms = 300 seconds)
+    // Trigger cleanup based on configurable thresholds
     this.requestCount++;
-    if (this.requestCount >= 100 || now - this.lastCleanup > 300000) {
+    if (this.requestCount >= RateLimiter.CLEANUP_REQUEST_THRESHOLD || 
+        now - this.lastCleanup > RateLimiter.CLEANUP_TIME_THRESHOLD) {
       this.cleanup();
       this.lastCleanup = now;
       this.requestCount = 0;
