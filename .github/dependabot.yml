@@ -10,6 +10,7 @@ updates:
     open-pull-requests-limit: 5
     reviewers:
       - "zulfi-git"
+    labels: []
     commit-message:
       prefix: "chore"
       prefix-development: "chore"
@@ -34,6 +35,7 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+    labels: []
     commit-message:
       prefix: "ci"
       include: "scope"

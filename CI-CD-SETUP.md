@@ -88,6 +88,7 @@ Located at `.github/dependabot.yml`, this configuration automates dependency upd
 - Major updates are created as individual PRs
 - Maximum 5 open PRs at a time
 
+**Labels:** None (disabled)
 **Commit Prefix:** `chore`
 
 ### GitHub Actions Dependencies
@@ -97,6 +98,7 @@ Located at `.github/dependabot.yml`, this configuration automates dependency upd
 - Keeps GitHub Actions up to date
 - Individual PRs for each action update
 
+**Labels:** None (disabled)
 **Commit Prefix:** `ci`
 
 ---
