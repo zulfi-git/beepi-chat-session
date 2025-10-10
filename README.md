@@ -1,8 +1,8 @@
 # ChatKit Token Service
 
-[![CI](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml)
-[![Security Scan](https://github.com/zulfi-git/chat-session/actions/workflows/security.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/security.yml)
-[![Deploy](https://github.com/zulfi-git/chat-session/actions/workflows/deploy.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/deploy.yml)
+[![CI](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/ci.yml/badge.svg)](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/ci.yml)
+[![Security Scan](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/security.yml/badge.svg)](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/security.yml)
+[![Deploy](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/deploy.yml/badge.svg)](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/deploy.yml)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 

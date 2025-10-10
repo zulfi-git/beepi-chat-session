@@ -13,8 +13,8 @@ Get your ChatKit Token Service running in 5 minutes!
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/zulfi-git/chat-session.git
-cd chat-session
+git clone https://github.com/zulfi-git/beepi-chat-session.git
+cd beepi-chat-session
 
 # 2. Install dependencies
 npm install
