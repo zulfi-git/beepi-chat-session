@@ -21,6 +21,39 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+# Test 0: Health Check
+echo -e "${BLUE}Test 0: Health Check${NC}"
+echo "GET $WORKER_URL/api/health"
+echo ""
+
+HEALTH_RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X GET "$WORKER_URL/api/health")
+
+HTTP_STATUS=$(echo "$HEALTH_RESPONSE" | grep "HTTP_STATUS:" | cut -d: -f2)
+RESPONSE_BODY=$(echo "$HEALTH_RESPONSE" | sed '/HTTP_STATUS:/d')
+
+if [ "$HTTP_STATUS" -eq 200 ]; then
+  echo -e "${GREEN}✓ Success (HTTP $HTTP_STATUS)${NC}"
+  echo "$RESPONSE_BODY" | jq '.'
+  
+  # Verify response structure
+  STATUS=$(echo "$RESPONSE_BODY" | jq -r '.status')
+  UPTIME=$(echo "$RESPONSE_BODY" | jq -r '.uptime')
+  VERSION=$(echo "$RESPONSE_BODY" | jq -r '.version')
+  
+  if [ "$STATUS" == "ok" ] && [ "$UPTIME" != "null" ] && [ "$VERSION" != "null" ]; then
+    echo -e "${GREEN}✓ Response structure is correct${NC}"
+  else
+    echo -e "${RED}✗ Response structure is incorrect${NC}"
+  fi
+else
+  echo -e "${RED}✗ Failed (HTTP $HTTP_STATUS)${NC}"
+  echo "$RESPONSE_BODY" | jq '.'
+fi
+
+echo ""
+echo "============================================"
+echo ""
+
 # Test 1: Start Session
 echo -e "${BLUE}Test 1: Start Session${NC}"
 echo "POST $WORKER_URL/api/chatkit/start"
