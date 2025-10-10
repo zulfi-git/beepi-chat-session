@@ -18,11 +18,15 @@ The following secrets have been added to Cloudflare Workers and are ready for us
 - **Required**: Yes
 - **Added**: October 2025
 
+## Non-Secret Configuration
+
 ### ALLOWED_ORIGINS
-- **Status**: Not yet configured
+- **Type**: Environment variable (not a secret)
 - **Purpose**: Comma-separated list of allowed CORS origins
 - **Required**: Optional (defaults to allowing all origins if not set)
-- **Example**: `https://example.com,https://www.example.com`
+- **Configuration**: Set in `wrangler.toml` under `[vars]` section
+- **Example**: `ALLOWED_ORIGINS = "https://example.com,https://www.example.com"`
+- **Note**: This is not sensitive data, so it's configured as a regular environment variable rather than a secret
 
 ## Managing Secrets
 
@@ -82,6 +86,24 @@ To add these secrets:
 4. **Monitor usage**
    - Check Cloudflare Workers logs for unexpected activity
    - Monitor OpenAI API usage for anomalies
+
+## Migration Note
+
+**If you previously set ALLOWED_ORIGINS as a secret:**
+
+ALLOWED_ORIGINS has been moved from secrets to environment variables in `wrangler.toml` because it contains non-sensitive configuration data (domain lists). 
+
+To migrate:
+1. Note your current ALLOWED_ORIGINS value (check your deployment or documentation)
+2. Delete the old secret: `wrangler secret delete ALLOWED_ORIGINS`
+3. Add it to `wrangler.toml` under the `[vars]` section:
+   ```toml
+   [vars]
+   ALLOWED_ORIGINS = "https://yourdomain.com,https://www.yourdomain.com"
+   ```
+4. Redeploy: `npm run deploy`
+
+For local development, continue using `.dev.vars` as before - this works for both secrets and regular environment variables.
 
 ## Next Steps
 
