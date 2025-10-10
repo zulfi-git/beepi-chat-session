@@ -27,7 +27,7 @@ class RateLimiter {
   isAllowed(ip: string): boolean {
     const now = Date.now();
     
-    // Trigger cleanup every 100 requests or every 5 minutes (300000ms)
+    // Trigger cleanup every 100 requests or every 5 minutes (300,000ms = 300 seconds)
     this.requestCount++;
     if (this.requestCount >= 100 || now - this.lastCleanup > 300000) {
       this.cleanup();
