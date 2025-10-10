@@ -39,17 +39,15 @@ npm install
 
 ### 2. Configure Wrangler
 
-Copy the template configuration:
+The repository includes a `wrangler.toml` configuration file with sensible defaults. For local development, you may need to set your Cloudflare `account_id`. You can find this in your [Cloudflare dashboard](https://dash.cloudflare.com/).
 
-```bash
-cp wrangler.toml.template wrangler.toml
-```
-
-Edit `wrangler.toml` and set your Cloudflare `account_id`. You can find this in your [Cloudflare dashboard](https://dash.cloudflare.com/).
+Edit `wrangler.toml` and uncomment the `account_id` line:
 
 ```toml
 account_id = "your-account-id-here"
 ```
+
+**Note:** When deploying via Cloudflare Pages or Workers, the `account_id` is automatically set from your Cloudflare account, so this step is only needed for local development with `wrangler dev`.
 
 ### 3. Set Environment Secrets
 
@@ -444,7 +442,8 @@ Check that:
 │   ├── rate-limiter.ts   # Rate limiting logic
 │   ├── logger.ts         # Request logging
 │   └── errors.ts         # Error response helpers
-├── wrangler.toml.template # Cloudflare Worker config template
+├── wrangler.toml          # Cloudflare Worker configuration
+├── wrangler.toml.template # Cloudflare Worker config template (for reference)
 ├── tsconfig.json         # TypeScript configuration
 ├── package.json          # Node.js dependencies
 ├── SECRETS.md            # Secrets configuration documentation

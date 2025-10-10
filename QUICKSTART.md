@@ -64,20 +64,19 @@ Open `examples/test.html` in your browser and click the test buttons.
 ## Deploy to Production
 
 ```bash
-# 1. Copy and configure wrangler.toml
-cp wrangler.toml.template wrangler.toml
-
-# 2. Edit wrangler.toml and set your account_id
+# 1. The wrangler.toml file is already included in the repository
+# For local deployment, you may need to set your account_id in wrangler.toml
 # Find it at: https://dash.cloudflare.com
+# Note: When deploying via Cloudflare Pages, account_id is set automatically
 
-# 3. Set production secrets
+# 2. Set production secrets (if not already configured)
 # Note: OPENAI_API_KEY and CHATKIT_WORKFLOW_ID are already configured
 # See SECRETS.md for details
 wrangler secret put OPENAI_API_KEY      # Already configured
 wrangler secret put CHATKIT_WORKFLOW_ID # Already configured
 wrangler secret put ALLOWED_ORIGINS     # Optional
 
-# 4. Deploy!
+# 3. Deploy!
 npm run deploy
 ```
 
