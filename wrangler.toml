@@ -31,7 +31,7 @@ compatibility_date = "2024-01-01"
 #   wrangler secret put CHATKIT_WORKFLOW_ID
 #   wrangler secret put ALLOWED_ORIGINS
 
-# Observability configuration (wrangler v3.88.0^)
+# Observability configuration (wrangler v3.88.0+)
 [observability]
 enabled = false
 
