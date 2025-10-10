@@ -5,7 +5,7 @@
  * to OpenAI's Agent Builder workflows.
  */
 
-import { Env, SessionResponse, StartSessionRequest, RefreshSessionRequest, RequestContext } from './types';
+import { Env, SessionResponse, StartSessionRequest, RefreshSessionRequest, RequestContext, HealthResponse } from './types';
 import { handleOptions, getCorsHeaders } from './cors';
 import { checkRateLimit } from './rate-limiter';
 import { generateRequestId, logRequest } from './logger';
@@ -17,6 +17,9 @@ import {
   internalErrorResponse,
 } from './errors';
 import { createChatKitSession, refreshChatKitSession } from './openai';
+
+// Worker start time for uptime calculation
+const WORKER_START_TIME = Date.now();
 
 /**
  * Get client IP address from request
@@ -170,6 +173,35 @@ async function handleRefreshSession(
 }
 
 /**
+ * Handle GET /api/health
+ * Returns health check information
+ */
+function handleHealth(
+  request: Request,
+  env: Env,
+  context: RequestContext
+): Response {
+  const uptimeMs = Date.now() - WORKER_START_TIME;
+  const uptimeSeconds = Math.floor(uptimeMs / 1000);
+  
+  const healthResponse: HealthResponse = {
+    status: 'ok',
+    uptime: uptimeSeconds,
+    version: '1.0.0',
+  };
+
+  logRequest(context, 200, 'success');
+
+  return new Response(JSON.stringify(healthResponse), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      ...getCorsHeaders(request, env),
+    },
+  });
+}
+
+/**
  * Main fetch handler for Cloudflare Worker
  */
 export default {
@@ -188,6 +220,11 @@ export default {
     // Handle CORS preflight
     if (request.method === 'OPTIONS') {
       return handleOptions(request, env);
+    }
+
+    // Handle health check (no rate limit)
+    if (request.method === 'GET' && url.pathname === '/api/health') {
+      return handleHealth(request, env, context);
     }
 
     // Check rate limit

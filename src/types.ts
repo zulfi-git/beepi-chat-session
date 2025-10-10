@@ -72,3 +72,12 @@ export interface RequestContext {
   method: string;
   path: string;
 }
+
+/**
+ * Health check response
+ */
+export interface HealthResponse {
+  status: string;
+  uptime: number;
+  version: string;
+}
