@@ -1,7 +1,5 @@
-import { ErrorResponse } from './types';
+import { ErrorResponse, Env } from './types';
 import { getCorsHeaders } from './cors';
-import { Env } from './types';
-
 /**
  * Create a JSON error response
  */
