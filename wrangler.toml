@@ -1,5 +1,5 @@
 # Cloudflare Worker Configuration
-name = "chatkit-token-service"
+name = "beepi-chat-session"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 
