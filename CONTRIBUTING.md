@@ -1,6 +1,8 @@
 # Contributing to ChatKit Token Service
 
-Thank you for your interest in contributing! This is a minimal, focused service, so contributions should maintain simplicity and clarity.
+**Note: This is a private and proprietary project.** 
+
+This document is for internal team members. This is a minimal, focused service, so contributions should maintain simplicity and clarity.
 
 ## Development Setup
 
