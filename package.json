@@ -1,5 +1,5 @@
 {
-  "name": "chat-session",
+  "name": "beepi-chat-session",
   "version": "1.0.0",
   "description": "Cloudflare Worker for ChatKit token service - issues short-lived client tokens for OpenAI Agent Builder workflows",
   "main": "src/index.ts",

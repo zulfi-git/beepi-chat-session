@@ -27,7 +27,7 @@ The project uses GitHub Actions for CI/CD automation and Dependabot for dependen
 - Runs on Node.js 20.x
 - Validates code with TypeScript compiler
 
-**Badge:** `[![CI](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml)`
+**Badge:** `[![CI](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/ci.yml/badge.svg)](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/ci.yml)`
 
 ---
 
@@ -46,7 +46,7 @@ The project uses GitHub Actions for CI/CD automation and Dependabot for dependen
 - Checks for outdated packages
 - Uploads audit results as artifacts (retained for 30 days)
 
-**Badge:** `[![Security Scan](https://github.com/zulfi-git/chat-session/actions/workflows/security.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/security.yml)`
+**Badge:** `[![Security Scan](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/security.yml/badge.svg)](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/security.yml)`
 
 ---
 
@@ -71,7 +71,7 @@ The project uses GitHub Actions for CI/CD automation and Dependabot for dependen
 2. Edit `.github/workflows/deploy.yml` and remove the `if: false` condition from the deploy step
 3. Ensure `wrangler.toml` is configured with your account ID
 
-**Badge:** `[![Deploy](https://github.com/zulfi-git/chat-session/actions/workflows/deploy.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/deploy.yml)`
+**Badge:** `[![Deploy](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/deploy.yml/badge.svg)](https://github.com/zulfi-git/beepi-chat-session/actions/workflows/deploy.yml)`
 
 ---
 
