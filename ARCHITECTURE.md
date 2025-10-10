@@ -39,10 +39,10 @@
 │  │     └─> Log: request_id, outcome, latency, NO secrets       ││
 │  └──────────────────────────────────────────────────────────────┘│
 │                                                                    │
-│  Environment Secrets:                                             │
-│  • OPENAI_API_KEY (never exposed to browser)                     │
-│  • CHATKIT_WORKFLOW_ID (your Agent Builder workflow)             │
-│  • ALLOWED_ORIGINS (comma-separated domains)                     │
+│  Environment Configuration:                                       │
+│  • OPENAI_API_KEY (secret - never exposed to browser)            │
+│  • CHATKIT_WORKFLOW_ID (secret - your Agent Builder workflow)    │
+│  • ALLOWED_ORIGINS (env var - comma-separated domains)           │
 └────────────────────┬───────────────────────────────────────────────┘
                      │
                      │ HTTPS (with API key)
@@ -311,7 +311,7 @@ wrangler secret put OPENAI_API_KEY --env staging
 wrangler deploy --env production
 wrangler secret put OPENAI_API_KEY --env production
 wrangler secret put CHATKIT_WORKFLOW_ID --env production
-wrangler secret put ALLOWED_ORIGINS --env production
+# Note: ALLOWED_ORIGINS is set in wrangler.toml under [vars], not as a secret
 ```
 
 ### Rollback

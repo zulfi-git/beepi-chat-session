@@ -13,6 +13,8 @@ compatibility_date = "2024-01-01"
 # ]
 
 # Environment variables (non-secret)
+# ALLOWED_ORIGINS: Configure which domains can access your API
+# Uncomment and set your allowed origins (comma-separated):
 [vars]
 # ALLOWED_ORIGINS = "https://yourdomain.com,https://www.yourdomain.com"
 
@@ -22,14 +24,10 @@ compatibility_date = "2024-01-01"
 # Required secrets:
 # - OPENAI_API_KEY: Your OpenAI API key
 # - CHATKIT_WORKFLOW_ID: Your ChatKit workflow ID from Agent Builder
-# 
-# Optional secrets:
-# - ALLOWED_ORIGINS: Comma-separated list of allowed CORS origins
 #
 # Set secrets with:
 #   wrangler secret put OPENAI_API_KEY
 #   wrangler secret put CHATKIT_WORKFLOW_ID
-#   wrangler secret put ALLOWED_ORIGINS
 
 # Observability configuration (wrangler v3.88.0+)
 [observability]

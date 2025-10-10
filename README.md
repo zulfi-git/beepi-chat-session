@@ -61,15 +61,25 @@ wrangler secret put OPENAI_API_KEY
 # Required: Your ChatKit workflow ID
 wrangler secret put CHATKIT_WORKFLOW_ID
 # When prompted, paste your workflow ID from Agent Builder
-
-# Optional: Allowed CORS origins (comma-separated)
-wrangler secret put ALLOWED_ORIGINS
-# Example: https://example.com,https://www.example.com
 ```
 
 **Important:** Never commit secrets to version control. The `wrangler.toml` file should only contain non-sensitive configuration.
 
 **Status:** The required secrets (`OPENAI_API_KEY` and `CHATKIT_WORKFLOW_ID`) have been configured in Cloudflare. See [SECRETS.md](SECRETS.md) for details on configured secrets and management instructions.
+
+### 4. Configure ALLOWED_ORIGINS (Optional)
+
+If you want to restrict which domains can access your API, configure allowed CORS origins in `wrangler.toml`:
+
+```toml
+[vars]
+ALLOWED_ORIGINS = "https://yourdomain.com,https://www.yourdomain.com"
+```
+
+**Note:** 
+- If not set, all origins are allowed (useful for development, but restrict in production)
+- This is a regular environment variable, not a secret, since it's not sensitive data
+- For local development, add it to `.dev.vars` instead
 
 ## Development
 
@@ -406,9 +416,10 @@ wrangler secret put OPENAI_API_KEY
 
 ### CORS errors in browser console
 
-1. Check that `ALLOWED_ORIGINS` includes your domain
+1. Check that `ALLOWED_ORIGINS` is set in `wrangler.toml` under `[vars]` section and includes your domain
 2. Verify the `Origin` header is sent in requests
 3. Ensure preflight (OPTIONS) requests succeed
+4. For local development, add the origin to `.dev.vars`
 
 ### Rate limit errors
 

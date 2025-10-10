@@ -283,15 +283,16 @@ function chatkit_settings_page() {
   <h2>Step 3: Configure CORS</h2>
   
   <div class="note">
-    <strong>Important:</strong> Make sure your WordPress domain is in the <code>ALLOWED_ORIGINS</code> secret for your Cloudflare Worker.
+    <strong>Important:</strong> Configure your WordPress domain in <code>ALLOWED_ORIGINS</code> in your Cloudflare Worker's <code>wrangler.toml</code> file.
   </div>
 
   <div class="code-block">
-    <code># Set allowed origins for your WordPress site
-wrangler secret put ALLOWED_ORIGINS
+    <code># Edit wrangler.toml and add your allowed origins under [vars]:
+[vars]
+ALLOWED_ORIGINS = "https://yourwordpresssite.com,https://www.yourwordpresssite.com"
 
-# When prompted, enter (comma-separated):
-https://yourwordpresssite.com,https://www.yourwordpresssite.com</code>
+# Then redeploy:
+npm run deploy</code>
   </div>
 
   <h2>Step 4: Test Integration</h2>
@@ -320,7 +321,7 @@ https://yourwordpresssite.com,https://www.yourwordpresssite.com</code>
 
   <h3>CORS errors</h3>
   <ul>
-    <li>Verify <code>ALLOWED_ORIGINS</code> includes your domain</li>
+    <li>Verify <code>ALLOWED_ORIGINS</code> in <code>wrangler.toml</code> under <code>[vars]</code> includes your domain</li>
     <li>Check that domain matches exactly (https vs http, www vs non-www)</li>
     <li>Test CORS with: <code>curl -X OPTIONS https://your-worker.workers.dev/api/chatkit/start -H "Origin: https://yoursite.com" -v</code></li>
   </ul>

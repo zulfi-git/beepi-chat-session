@@ -74,9 +74,13 @@ Open `examples/test.html` in your browser and click the test buttons.
 # See SECRETS.md for details
 wrangler secret put OPENAI_API_KEY      # Already configured
 wrangler secret put CHATKIT_WORKFLOW_ID # Already configured
-wrangler secret put ALLOWED_ORIGINS     # Optional
 
-# 3. Deploy!
+# 3. (Optional) Configure allowed origins in wrangler.toml
+# Edit wrangler.toml and uncomment/set the ALLOWED_ORIGINS variable:
+# [vars]
+# ALLOWED_ORIGINS = "https://yourdomain.com,https://www.yourdomain.com"
+
+# 4. Deploy!
 npm run deploy
 ```
 
@@ -128,8 +132,9 @@ Quick snippet:
 - Make sure you set secrets: `wrangler secret put OPENAI_API_KEY`
 
 **CORS errors**
-- Add your domain to ALLOWED_ORIGINS: `wrangler secret put ALLOWED_ORIGINS`
-- Format: `https://domain1.com,https://domain2.com`
+- Add your domain to ALLOWED_ORIGINS in `wrangler.toml` under `[vars]` section
+- Format: `ALLOWED_ORIGINS = "https://domain1.com,https://domain2.com"`
+- For local development, add to `.dev.vars` file
 
 **Rate limit errors**
 - The default limit is 10 requests/IP, refilling at 1/second
