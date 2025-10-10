@@ -17,16 +17,16 @@ export function logRequest(
   outcome: 'success' | 'error' | 'rate_limited',
   errorMessage?: string
 ): void {
-  const latencyMs = Date.now() - context.startTime;
+  const durationMs = Date.now() - context.startTime;
   
   const logEntry = {
     request_id: context.requestId,
     method: context.method,
     path: context.path,
     ip: context.ip,
-    status: statusCode,
+    status_code: statusCode,
     outcome,
-    latency_ms: latencyMs,
+    duration_ms: durationMs,
     timestamp: new Date().toISOString(),
     ...(errorMessage && { error: errorMessage }),
   };

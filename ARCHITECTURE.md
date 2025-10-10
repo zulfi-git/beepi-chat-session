@@ -280,9 +280,9 @@ Total Request Time: ~200-500ms
   "method": "POST",
   "path": "/api/chatkit/start",
   "ip": "1.2.3.4",
-  "status": 200,
+  "status_code": 200,
   "outcome": "success",
-  "latency_ms": 245,
+  "duration_ms": 245,
   "timestamp": "2024-01-01T00:00:00.000Z"
 }
 ```
