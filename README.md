@@ -1,5 +1,11 @@
 # ChatKit Token Service
 
+[![CI](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml)
+[![Security Scan](https://github.com/zulfi-git/chat-session/actions/workflows/security.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/security.yml)
+[![Deploy](https://github.com/zulfi-git/chat-session/actions/workflows/deploy.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/deploy.yml)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
+
 A Cloudflare Worker that issues short-lived client tokens for ChatKit (OpenAI Agent Builder) workflows. This service acts as a secure backend proxy that protects your OpenAI API keys while allowing your WordPress site (or any frontend) to authenticate ChatKit sessions.
 
 ## Overview
@@ -422,6 +428,12 @@ Check that:
 
 ```
 .
+├── .github/
+│   ├── workflows/         # GitHub Actions CI/CD workflows
+│   │   ├── ci.yml        # Continuous Integration (testing & type-checking)
+│   │   ├── security.yml  # Security scanning and audits
+│   │   └── deploy.yml    # Deployment to Cloudflare Workers
+│   └── dependabot.yml    # Dependabot configuration
 ├── src/
 │   ├── index.ts          # Main Worker entry point
 │   ├── types.ts          # TypeScript type definitions
@@ -433,6 +445,7 @@ Check that:
 ├── wrangler.toml.template # Cloudflare Worker config template
 ├── tsconfig.json         # TypeScript configuration
 ├── package.json          # Node.js dependencies
+├── CI-CD-SETUP.md        # CI/CD documentation
 └── README.md            # This file
 ```
 
@@ -445,6 +458,9 @@ This is a minimal, self-contained service. When making changes:
 2. Add comments for complex logic
 3. Test locally with `wrangler dev`
 4. Run type checking with `npm run type-check`
+5. Ensure all CI checks pass before merging
+
+See [CI-CD-SETUP.md](CI-CD-SETUP.md) for details on our automated testing and deployment processes.
 
 ## License
 

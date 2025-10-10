@@ -1,0 +1,60 @@
+name: Deploy to Cloudflare
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        type: choice
+        options:
+          - production
+          - staging
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'wrangler.toml'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  deploy:
+    name: Deploy Worker
+    runs-on: ubuntu-latest
+    # Only run on main branch or manual trigger
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run type check
+        run: npm run type-check
+      
+      - name: Deploy to Cloudflare Workers
+        # This step requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets
+        # Comment this out until secrets are configured
+        if: false  # Disabled until secrets are configured
+        run: npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      
+      - name: Deployment Instructions
+        run: |
+          echo "::notice::Deployment is currently disabled. To enable:"
+          echo "::notice::1. Add CLOUDFLARE_API_TOKEN to repository secrets"
+          echo "::notice::2. Add CLOUDFLARE_ACCOUNT_ID to repository secrets"
+          echo "::notice::3. Remove the 'if: false' condition from the deploy step"
+          echo "::notice::4. Ensure wrangler.toml is configured with your account_id"

@@ -25,16 +25,22 @@ This document is for internal team members. This is a minimal, focused service, 
 Before submitting changes:
 
 1. Run TypeScript type checking: `npm run type-check`
-2. Test locally with `npm run dev`
-3. Run the test script: `./examples/test.sh`
-4. Open `examples/test.html` in a browser and test manually
+2. Run security audit: `npm audit`
+3. Test locally with `npm run dev`
+4. Run the test script: `./examples/test.sh`
+5. Open `examples/test.html` in a browser and test manually
+
+All pull requests will automatically run CI checks including type checking, security scans, and dependency reviews. See [CI-CD-SETUP.md](CI-CD-SETUP.md) for details.
 
 ## Making Changes
 
 1. Create a feature branch from `main`
 2. Make your changes
-3. Test thoroughly
-4. Submit a pull request with a clear description
+3. Test thoroughly (see Testing section above)
+4. Ensure all CI checks pass
+5. Submit a pull request with a clear description
+
+**Note:** Pull requests must pass all CI checks before they can be merged.
 
 ## Areas for Contribution
 
