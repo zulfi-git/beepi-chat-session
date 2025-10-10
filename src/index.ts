@@ -6,7 +6,7 @@
  */
 
 import { Env, SessionResponse, StartSessionRequest, RefreshSessionRequest, RequestContext } from './types';
-import { handleOptions } from './cors';
+import { handleOptions, getCorsHeaders } from './cors';
 import { checkRateLimit } from './rate-limiter';
 import { generateRequestId, logRequest } from './logger';
 import {
@@ -17,7 +17,6 @@ import {
   internalErrorResponse,
 } from './errors';
 import { createChatKitSession, refreshChatKitSession } from './openai';
-import { getCorsHeaders } from './cors';
 
 /**
  * Get client IP address from request
