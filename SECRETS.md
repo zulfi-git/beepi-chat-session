@@ -10,13 +10,13 @@ The following secrets have been added to Cloudflare Workers and are ready for us
 - **Status**: Configured
 - **Purpose**: Your OpenAI API key for accessing the Realtime API
 - **Required**: Yes
-- **Added**: 2025-10-10
+- **Added**: October 2025
 
 ### ✅ CHATKIT_WORKFLOW_ID
 - **Status**: Configured
 - **Purpose**: Your ChatKit workflow ID from Agent Builder
 - **Required**: Yes
-- **Added**: 2025-10-10
+- **Added**: October 2025
 
 ### ALLOWED_ORIGINS
 - **Status**: Not yet configured
