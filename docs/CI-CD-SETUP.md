@@ -240,5 +240,5 @@ Potential improvements to the CI/CD setup:
 
 ---
 
-**Last Updated:** 2025-10-10  
+**Version:** 1.1.0  
 **Maintained By:** See [CONTRIBUTING.md](CONTRIBUTING.md)

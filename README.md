@@ -65,7 +65,7 @@ wrangler secret put CHATKIT_WORKFLOW_ID
 
 **Important:** Never commit secrets to version control. The `wrangler.toml` file should only contain non-sensitive configuration.
 
-**Status:** The required secrets (`OPENAI_API_KEY` and `CHATKIT_WORKFLOW_ID`) have been configured in Cloudflare. See [SECRETS.md](SECRETS.md) for details on configured secrets and management instructions.
+**Status:** The required secrets (`OPENAI_API_KEY` and `CHATKIT_WORKFLOW_ID`) have been configured in Cloudflare. See [docs/SECRETS.md](docs/SECRETS.md) for details on configured secrets and management instructions.
 
 ### 4. Configure ALLOWED_ORIGINS (Optional)
 
@@ -110,6 +110,15 @@ npm run deploy
 ```
 
 After deployment, your worker will be available at `https://chatkit-token-service.<your-subdomain>.workers.dev`
+
+## Documentation
+
+- **[WordPress Integration Guide](docs/WORDPRESS-INTEGRATION.md)** - Integrate ChatKit with your WordPress site
+- **[Testing Guide](docs/TESTING.md)** - Test your deployment locally and in production
+- **[Architecture Documentation](docs/ARCHITECTURE.md)** - System architecture and technical details
+- **[CI/CD Setup](docs/CI-CD-SETUP.md)** - Automated testing and deployment
+- **[Contributing Guidelines](docs/CONTRIBUTING.md)** - How to contribute to this project
+- **[Secrets Management](docs/SECRETS.md)** - Managing API keys and secrets
 
 ## API Reference
 
@@ -173,187 +182,51 @@ curl -X POST https://your-worker.workers.dev/api/chatkit/refresh \
 
 ## WordPress Integration
 
-### Backend Integration
+To integrate ChatKit with your WordPress site, see the comprehensive [WordPress Integration Guide](docs/WORDPRESS-INTEGRATION.md).
 
-Add this PHP code to your WordPress theme's `functions.php` or a custom plugin:
-
-```php
-<?php
-// No backend integration needed - ChatKit runs entirely in the browser
-// The WordPress site only needs to load the ChatKit widget JavaScript
-```
-
-### Frontend Integration
-
-Add this JavaScript snippet to your WordPress theme to configure ChatKit with the token service:
+**Quick snippet:**
 
 ```html
 <script type="module">
-  // ChatKit configuration
   const WORKER_URL = 'https://your-worker.workers.dev';
+  let session = null;
   
-  // Initialize ChatKit with token management
-  (async function initChatKit() {
-    // Import ChatKit from CDN
-    const { renderChatkit } = await import('https://cdn.jsdelivr.net/npm/@openai/chatkit@latest/dist/index.js');
+  async function getClientSecret() {
+    const now = Math.floor(Date.now() / 1000);
+    if (session && session.expires_at > now + 60) return session.client_secret;
     
-    let currentSession = null;
+    const endpoint = session ? '/api/chatkit/refresh' : '/api/chatkit/start';
+    const body = session ? { currentClientSecret: session.client_secret } : {};
     
-    // Function to get or refresh client secret
-    async function getClientSecret() {
-      const now = Math.floor(Date.now() / 1000);
-      
-      // If we have a valid token, return it
-      if (currentSession && currentSession.expires_at > now + 60) {
-        return currentSession.client_secret;
-      }
-      
-      try {
-        // Refresh or start new session
-        const endpoint = currentSession 
-          ? '/api/chatkit/refresh' 
-          : '/api/chatkit/start';
-          
-        const body = currentSession 
-          ? JSON.stringify({ currentClientSecret: currentSession.client_secret })
-          : '{}';
-        
-        const response = await fetch(WORKER_URL + endpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: body,
-        });
-        
-        if (!response.ok) {
-          const error = await response.json();
-          throw new Error(error.message || 'Failed to get token');
-        }
-        
-        currentSession = await response.json();
-        return currentSession.client_secret;
-      } catch (error) {
-        console.error('ChatKit token error:', error);
-        throw error;
-      }
-    }
-    
-    // Render ChatKit widget
-    renderChatkit({
-      getClientSecret: getClientSecret,
-      // Add other ChatKit configuration options here
+    const res = await fetch(WORKER_URL + endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     });
-  })();
+    
+    session = await res.json();
+    return session.client_secret;
+  }
+  
+  // Initialize ChatKit
+  import('https://cdn.jsdelivr.net/npm/@openai/chatkit@latest/dist/index.js')
+    .then(({ renderChatkit }) => renderChatkit({ getClientSecret }));
 </script>
 ```
 
-### Vanilla JavaScript Example (No WordPress)
+## Testing
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>ChatKit Example</title>
-</head>
-<body>
-  <div id="chatkit-container"></div>
-  
-  <script type="module">
-    const WORKER_URL = 'https://your-worker.workers.dev';
-    
-    // Import ChatKit
-    import { renderChatkit } from 'https://cdn.jsdelivr.net/npm/@openai/chatkit@latest/dist/index.js';
-    
-    let currentSession = null;
-    
-    // Token management function
-    async function getClientSecret() {
-      const now = Math.floor(Date.now() / 1000);
-      
-      // Return cached token if still valid
-      if (currentSession && currentSession.expires_at > now + 60) {
-        return currentSession.client_secret;
-      }
-      
-      // Request new or refreshed token
-      const endpoint = currentSession ? '/api/chatkit/refresh' : '/api/chatkit/start';
-      const body = currentSession 
-        ? { currentClientSecret: currentSession.client_secret }
-        : {};
-      
-      const response = await fetch(WORKER_URL + endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to get ChatKit token');
-      }
-      
-      currentSession = await response.json();
-      return currentSession.client_secret;
-    }
-    
-    // Initialize ChatKit
-    renderChatkit({
-      getClientSecret,
-      container: document.getElementById('chatkit-container'),
-    });
-  </script>
-</body>
-</html>
-```
+See the complete [Testing Guide](docs/TESTING.md) for detailed testing instructions.
 
-## Testing with curl
-
-### Test session creation:
+**Quick test:**
 
 ```bash
 curl -X POST http://localhost:8787/api/chatkit/start \
   -H "Content-Type: application/json" \
-  -H "Origin: https://example.com" \
-  -d '{}' \
-  -v
+  -d '{}'
 ```
 
-### Test session refresh:
-
-```bash
-# First, get a session
-SESSION=$(curl -s -X POST http://localhost:8787/api/chatkit/start \
-  -H "Content-Type: application/json" \
-  -d '{}' | jq -r '.client_secret')
-
-# Then refresh it
-curl -X POST http://localhost:8787/api/chatkit/refresh \
-  -H "Content-Type: application/json" \
-  -H "Origin: https://example.com" \
-  -d "{\"currentClientSecret\": \"$SESSION\"}" \
-  -v
-```
-
-### Test CORS preflight:
-
-```bash
-curl -X OPTIONS http://localhost:8787/api/chatkit/start \
-  -H "Origin: https://example.com" \
-  -H "Access-Control-Request-Method: POST" \
-  -v
-```
-
-### Test rate limiting:
-
-```bash
-# Send multiple requests quickly
-for i in {1..15}; do
-  echo "Request $i:"
-  curl -s -X POST http://localhost:8787/api/chatkit/start \
-    -H "Content-Type: application/json" \
-    -d '{}' | jq '.error // "success"'
-done
-```
+Or use the interactive test page: open `examples/test.html` in your browser.
 
 ## Architecture
 
@@ -445,21 +318,30 @@ Check that:
 │   │   ├── security.yml  # Security scanning and audits
 │   │   └── deploy.yml    # Deployment to Cloudflare Workers
 │   └── dependabot.yml    # Dependabot configuration
+├── docs/
+│   ├── ARCHITECTURE.md    # System architecture and flow diagrams
+│   ├── CI-CD-SETUP.md     # CI/CD pipeline documentation
+│   ├── CONTRIBUTING.md    # Contributing guidelines
+│   ├── SECRETS.md         # Secrets management documentation
+│   ├── TESTING.md         # Testing guide
+│   └── WORDPRESS-INTEGRATION.md  # WordPress integration guide
+├── examples/
+│   ├── test.html          # Interactive browser test page
+│   └── test.sh            # Automated test script
 ├── src/
-│   ├── index.ts          # Main Worker entry point
-│   ├── types.ts          # TypeScript type definitions
-│   ├── openai.ts         # OpenAI API client
-│   ├── cors.ts           # CORS handling
-│   ├── rate-limiter.ts   # Rate limiting logic
-│   ├── logger.ts         # Request logging
-│   └── errors.ts         # Error response helpers
+│   ├── index.ts           # Main Worker entry point
+│   ├── types.ts           # TypeScript type definitions
+│   ├── openai.ts          # OpenAI API client
+│   ├── cors.ts            # CORS handling
+│   ├── rate-limiter.ts    # Rate limiting logic
+│   ├── logger.ts          # Request logging
+│   └── errors.ts          # Error response helpers
 ├── wrangler.toml          # Cloudflare Worker configuration
 ├── wrangler.toml.template # Cloudflare Worker config template (for reference)
-├── tsconfig.json         # TypeScript configuration
-├── package.json          # Node.js dependencies
-├── SECRETS.md            # Secrets configuration documentation
-├── CI-CD-SETUP.md        # CI/CD documentation
-└── README.md            # This file
+├── tsconfig.json          # TypeScript configuration
+├── package.json           # Node.js dependencies
+├── CHANGELOG.md           # Version history and changes
+└── README.md              # This file
 ```
 
 ## Contributing
@@ -473,7 +355,7 @@ This is a minimal, self-contained service. When making changes:
 4. Run type checking with `npm run type-check`
 5. Ensure all CI checks pass before merging
 
-See [CI-CD-SETUP.md](CI-CD-SETUP.md) for details on our automated testing and deployment processes.
+See [CI-CD-SETUP.md](docs/CI-CD-SETUP.md) for details on our automated testing and deployment processes.
 
 ## License
 
