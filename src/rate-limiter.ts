@@ -9,12 +9,16 @@ class RateLimiter {
   private readonly maxTokens: number;
   private readonly refillRate: number; // tokens per second
   private readonly refillInterval: number; // milliseconds
+  private lastCleanup: number;
+  private requestCount: number;
 
   constructor(maxTokens = 10, refillRate = 1, refillIntervalMs = 1000) {
     this.buckets = new Map();
     this.maxTokens = maxTokens;
     this.refillRate = refillRate;
     this.refillInterval = refillIntervalMs;
+    this.lastCleanup = Date.now();
+    this.requestCount = 0;
   }
 
   /**
@@ -22,6 +26,15 @@ class RateLimiter {
    */
   isAllowed(ip: string): boolean {
     const now = Date.now();
+    
+    // Trigger cleanup every 100 requests or every 5 minutes (300000ms)
+    this.requestCount++;
+    if (this.requestCount >= 100 || now - this.lastCleanup > 300000) {
+      this.cleanup();
+      this.lastCleanup = now;
+      this.requestCount = 0;
+    }
+    
     let entry = this.buckets.get(ip);
 
     if (!entry) {
