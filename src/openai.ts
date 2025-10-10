@@ -18,6 +18,7 @@ export async function createChatKitSession(env: Env): Promise<OpenAISessionRespo
     body: JSON.stringify({
       model: 'gpt-4o-realtime-preview-2024-12-17',
       voice: 'verse',
+      workflow_id: env.CHATKIT_WORKFLOW_ID,
     }),
   });
 
