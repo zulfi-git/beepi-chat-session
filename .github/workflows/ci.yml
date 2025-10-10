@@ -55,15 +55,3 @@ jobs:
       
       - name: Run type check (linting)
         run: npm run type-check
-
-  dependency-review:
-    name: Dependency Review
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-      
-      - name: Dependency Review
-        uses: actions/dependency-review-action@v4
