@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatKit Token Service Test</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .section {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    button {
+      background: #0066cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #0052a3;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    .success {
+      color: #28a745;
+    }
+    .error {
+      color: #dc3545;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ChatKit Token Service Test</h1>
+  <p>Test the ChatKit token endpoints before integrating with your WordPress site.</p>
+
+  <div class="section">
+    <h2>Configuration</h2>
+    <label for="workerUrl">Worker URL:</label>
+    <input 
+      type="text" 
+      id="workerUrl" 
+      placeholder="http://localhost:8787" 
+      value="http://localhost:8787"
+    />
+    <p><small>For local testing, use <code>http://localhost:8787</code>. For production, use your deployed worker URL.</small></p>
+  </div>
+
+  <div class="section">
+    <h2>Test Endpoints</h2>
+    
+    <h3>1. Start Session</h3>
+    <button onclick="testStartSession()">POST /api/chatkit/start</button>
+    <div id="startResult"></div>
+
+    <h3>2. Refresh Session</h3>
+    <button onclick="testRefreshSession()" id="refreshBtn" disabled>POST /api/chatkit/refresh</button>
+    <p><small>First create a session to enable refresh.</small></p>
+    <div id="refreshResult"></div>
+
+    <h3>3. Rate Limiting Test</h3>
+    <button onclick="testRateLimit()">Send 15 Rapid Requests</button>
+    <div id="rateLimitResult"></div>
+
+    <h3>4. CORS Preflight Test</h3>
+    <button onclick="testCORS()">OPTIONS /api/chatkit/start</button>
+    <div id="corsResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>Current Session</h2>
+    <div id="sessionInfo">No session yet. Click "Start Session" to begin.</div>
+  </div>
+
+  <script>
+    let currentSession = null;
+
+    function getWorkerUrl() {
+      return document.getElementById('workerUrl').value.trim();
+    }
+
+    function displayResult(elementId, result, isError = false) {
+      const element = document.getElementById(elementId);
+      const className = isError ? 'error' : 'success';
+      element.innerHTML = `<pre class="${className}">${JSON.stringify(result, null, 2)}</pre>`;
+    }
+
+    function updateSessionInfo(session) {
+      currentSession = session;
+      const sessionInfo = document.getElementById('sessionInfo');
+      const now = Math.floor(Date.now() / 1000);
+      const expiresIn = session.expires_at - now;
+      
+      sessionInfo.innerHTML = `
+        <pre><strong>Client Secret:</strong> ${session.client_secret.substring(0, 20)}...
+<strong>Expires At:</strong> ${new Date(session.expires_at * 1000).toLocaleString()}
+<strong>Expires In:</strong> ${expiresIn} seconds</pre>
+      `;
+      
+      document.getElementById('refreshBtn').disabled = false;
+    }
+
+    async function testStartSession() {
+      const resultDiv = document.getElementById('startResult');
+      resultDiv.innerHTML = '<p>Sending request...</p>';
+      
+      try {
+        const response = await fetch(getWorkerUrl() + '/api/chatkit/start', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          displayResult('startResult', data);
+          updateSessionInfo(data);
+        } else {
+          displayResult('startResult', data, true);
+        }
+      } catch (error) {
+        displayResult('startResult', { error: error.message }, true);
+      }
+    }
+
+    async function testRefreshSession() {
+      if (!currentSession) {
+        alert('Please start a session first!');
+        return;
+      }
+
+      const resultDiv = document.getElementById('refreshResult');
+      resultDiv.innerHTML = '<p>Sending request...</p>';
+      
+      try {
+        const response = await fetch(getWorkerUrl() + '/api/chatkit/refresh', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            currentClientSecret: currentSession.client_secret,
+          }),
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          displayResult('refreshResult', data);
+          updateSessionInfo(data);
+        } else {
+          displayResult('refreshResult', data, true);
+        }
+      } catch (error) {
+        displayResult('refreshResult', { error: error.message }, true);
+      }
+    }
+
+    async function testRateLimit() {
+      const resultDiv = document.getElementById('rateLimitResult');
+      resultDiv.innerHTML = '<p>Sending 15 requests...</p>';
+      
+      const results = [];
+      
+      for (let i = 0; i < 15; i++) {
+        try {
+          const response = await fetch(getWorkerUrl() + '/api/chatkit/start', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+          });
+
+          results.push({
+            request: i + 1,
+            status: response.status,
+            rateLimited: response.status === 429,
+          });
+        } catch (error) {
+          results.push({
+            request: i + 1,
+            error: error.message,
+          });
+        }
+      }
+
+      const summary = {
+        total: results.length,
+        successful: results.filter(r => r.status === 200).length,
+        rateLimited: results.filter(r => r.status === 429).length,
+        results: results,
+      };
+
+      displayResult('rateLimitResult', summary);
+    }
+
+    async function testCORS() {
+      const resultDiv = document.getElementById('corsResult');
+      resultDiv.innerHTML = '<p>Sending OPTIONS request...</p>';
+      
+      try {
+        const response = await fetch(getWorkerUrl() + '/api/chatkit/start', {
+          method: 'OPTIONS',
+          headers: {
+            'Origin': window.location.origin,
+            'Access-Control-Request-Method': 'POST',
+          },
+        });
+
+        const headers = {};
+        response.headers.forEach((value, key) => {
+          if (key.toLowerCase().startsWith('access-control')) {
+            headers[key] = value;
+          }
+        });
+
+        displayResult('corsResult', {
+          status: response.status,
+          corsHeaders: headers,
+        });
+      } catch (error) {
+        displayResult('corsResult', { error: error.message }, true);
+      }
+    }
+  </script>
+</body>
+</html>
