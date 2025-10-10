@@ -27,11 +27,6 @@ The project uses GitHub Actions for CI/CD automation and Dependabot for dependen
 - Runs on Node.js 20.x
 - Validates code with TypeScript compiler
 
-#### Dependency Review Job
-- Runs only on pull requests
-- Reviews dependency changes for security issues
-- Prevents introduction of vulnerable dependencies
-
 **Badge:** `[![CI](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml/badge.svg)](https://github.com/zulfi-git/chat-session/actions/workflows/ci.yml)`
 
 ---
@@ -176,7 +171,7 @@ npm run dev
 
 **Review Process:**
 1. Check the PR description for changelog and compatibility notes
-2. Review the "Dependency Review" job results
+2. Review the CI job results (type check and security audit)
 3. Test locally if needed: `npm install && npm run type-check`
 4. Approve and merge if all checks pass
 

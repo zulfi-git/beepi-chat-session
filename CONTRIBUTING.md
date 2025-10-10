@@ -30,7 +30,7 @@ Before submitting changes:
 4. Run the test script: `./examples/test.sh`
 5. Open `examples/test.html` in a browser and test manually
 
-All pull requests will automatically run CI checks including type checking, security scans, and dependency reviews. See [CI-CD-SETUP.md](CI-CD-SETUP.md) for details.
+All pull requests will automatically run CI checks including type checking and security scans. See [CI-CD-SETUP.md](CI-CD-SETUP.md) for details.
 
 ## Making Changes
 
