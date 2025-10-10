@@ -42,6 +42,7 @@ export function getCorsHeaders(request: Request, env: Env): Record<string, strin
   if (isOriginAllowed(origin, allowedOrigins)) {
     headers['Access-Control-Allow-Origin'] = origin!;
     headers['Access-Control-Allow-Credentials'] = 'true';
+    headers['Vary'] = 'Origin';
   }
 
   return headers;
