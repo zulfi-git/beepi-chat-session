@@ -45,6 +45,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Planned
+- Durable Objects integration for distributed rate limiting
+- Enhanced analytics and monitoring
+- User authentication support
+- Multiple workflow support
+- Webhook notifications
+
 ---
 
 ## [1.1.0] - 2025-10-10
@@ -66,15 +73,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## [1.0.0] - 2024-01-01
-
-### Planned
-- Durable Objects integration for distributed rate limiting
-- Enhanced analytics and monitoring
-- User authentication support
-- Multiple workflow support
-- Webhook notifications
-
----
 
 ## Version History
 
