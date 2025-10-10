@@ -71,6 +71,8 @@ wrangler secret put ALLOWED_ORIGINS
 
 **Important:** Never commit secrets to version control. The `wrangler.toml` file should only contain non-sensitive configuration.
 
+**Status:** The required secrets (`OPENAI_API_KEY` and `CHATKIT_WORKFLOW_ID`) have been configured in Cloudflare. See [SECRETS.md](SECRETS.md) for details on configured secrets and management instructions.
+
 ## Development
 
 ### Run Locally
@@ -445,6 +447,7 @@ Check that:
 ├── wrangler.toml.template # Cloudflare Worker config template
 ├── tsconfig.json         # TypeScript configuration
 ├── package.json          # Node.js dependencies
+├── SECRETS.md            # Secrets configuration documentation
 ├── CI-CD-SETUP.md        # CI/CD documentation
 └── README.md            # This file
 ```

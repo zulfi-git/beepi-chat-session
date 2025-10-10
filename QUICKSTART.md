@@ -71,9 +71,11 @@ cp wrangler.toml.template wrangler.toml
 # Find it at: https://dash.cloudflare.com
 
 # 3. Set production secrets
-wrangler secret put OPENAI_API_KEY
-wrangler secret put CHATKIT_WORKFLOW_ID
-wrangler secret put ALLOWED_ORIGINS
+# Note: OPENAI_API_KEY and CHATKIT_WORKFLOW_ID are already configured
+# See SECRETS.md for details
+wrangler secret put OPENAI_API_KEY      # Already configured
+wrangler secret put CHATKIT_WORKFLOW_ID # Already configured
+wrangler secret put ALLOWED_ORIGINS     # Optional
 
 # 4. Deploy!
 npm run deploy
