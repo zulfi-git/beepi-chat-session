@@ -6,7 +6,7 @@ import { RateLimitEntry } from './types';
  */
 class RateLimiter {
   private static readonly CLEANUP_REQUEST_THRESHOLD = 100;
-  private static readonly CLEANUP_TIME_THRESHOLD = 300000; // 5 minutes in milliseconds
+  private static readonly CLEANUP_TIME_THRESHOLD = 300000; // 5 minutes (300 seconds) in milliseconds
   
   private buckets: Map<string, RateLimitEntry>;
   private readonly maxTokens: number;
