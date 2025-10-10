@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automated bash test script with 6 test scenarios
 - Contributing guidelines and code style documentation
 - Architecture documentation with system diagrams
-- ISC License
+- Proprietary license
 
 ### Security
 - API keys never exposed to browser (server-side only)

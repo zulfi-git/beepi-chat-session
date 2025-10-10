@@ -438,6 +438,8 @@ Check that:
 
 ## Contributing
 
+**This is a private and proprietary project - for internal team use only.**
+
 This is a minimal, self-contained service. When making changes:
 1. Keep functions small and focused
 2. Add comments for complex logic
@@ -446,7 +448,9 @@ This is a minimal, self-contained service. When making changes:
 
 ## License
 
-ISC
+**Proprietary and Confidential**
+
+This project is private and proprietary. All rights reserved. Unauthorized copying, distribution, or use is strictly prohibited.
 
 ## Resources
 
