@@ -54,8 +54,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2025-10-10
+
+### Changed
+- **Documentation Restructure**: Reorganized documentation for better clarity
+  - Created `/docs` directory for all documentation
+  - Moved `ARCHITECTURE.md`, `CI-CD-SETUP.md`, `CONTRIBUTING.md`, and `SECRETS.md` to `/docs`
+  - Converted HTML examples to Markdown for better GitHub browsing
+  - Created `docs/WORDPRESS-INTEGRATION.md` (converted from `examples/wordpress-integration.html`)
+  - Created `docs/TESTING.md` (converted from `examples/test.html`)
+  - Removed redundant `QUICKSTART.md` (content covered in README)
+  - Streamlined documentation to be concise and practical
+
+### Updated
+- Updated version to 1.1.0
+- Updated documentation cross-references to reflect new structure
+
+---
+
+## [1.0.0] - 2024-01-01
+
 ## Version History
 
+- **1.1.0** - Documentation housekeeping (2025-10-10)
+  - Reorganized all documentation into `/docs` directory
+  - Converted HTML docs to Markdown format
+  - Streamlined and consolidated documentation
 - **1.0.0** - Initial release (2024-01-01)
   - Full-featured ChatKit token service
   - Production-ready implementation
@@ -63,4 +87,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-For more details, see the [README](README.md) and [ARCHITECTURE](ARCHITECTURE.md) documentation.
+For more details, see the [README](README.md) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
