@@ -357,6 +357,10 @@ This is a minimal, self-contained service. When making changes:
 
 See [CI-CD-SETUP.md](docs/CI-CD-SETUP.md) for details on our automated testing and deployment processes.
 
+For code quality assessment and future improvements, see:
+- **[Codebase Assessment](docs/CODEBASE-ASSESSMENT.md)** - Comprehensive quality evaluation (Overall Score: 8.5/10)
+- **[Work Packages](docs/WORK-PACKAGES.md)** - Prioritized improvement roadmap
+
 ## License
 
 **Proprietary and Confidential**
