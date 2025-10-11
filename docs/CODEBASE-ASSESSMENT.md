@@ -398,7 +398,8 @@ Based on the assessment, here are recommended work packages prioritized for a **
 
 **Tasks:**
 - [ ] Extract HTTP status codes to constants
-- [ ] Create configuration constants file
+- [x] Create configuration constants file
+- [x] Extract application version from package.json to constants
 - [ ] Extract rate limit config to constants
 - [ ] Add JSDoc comments to public functions
 - [ ] Review and simplify complex functions

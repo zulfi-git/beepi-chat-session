@@ -138,8 +138,14 @@ npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslin
 ### 📦 2.2 Code Refactoring
 **Effort:** 1 day | **Impact:** 🔥 Medium
 
+**Status:** ✅ Partially completed - `src/constants.ts` created with APP_VERSION
+
 **Create:** `src/constants.ts`
 ```typescript
+// ✅ COMPLETED: Application version
+export const APP_VERSION = pkg.version;
+
+// TODO: HTTP status codes
 export const HTTP_STATUS = {
   OK: 200,
   NO_CONTENT: 204,
@@ -150,6 +156,7 @@ export const HTTP_STATUS = {
   INTERNAL_ERROR: 500,
 } as const;
 
+// TODO: Rate limit configuration
 export const RATE_LIMIT_CONFIG = {
   MAX_TOKENS: 10,
   REFILL_RATE: 1,

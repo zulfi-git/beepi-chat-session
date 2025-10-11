@@ -17,6 +17,7 @@ import {
   internalErrorResponse,
 } from './errors';
 import { createChatKitSession, refreshChatKitSession } from './openai';
+import { APP_VERSION } from './constants';
 
 // Worker start time for uptime calculation
 const WORKER_START_TIME = Date.now();
@@ -187,7 +188,7 @@ function handleHealth(
   const healthResponse: HealthResponse = {
     status: 'ok',
     uptime: uptimeSeconds,
-    version: '1.0.0',
+    version: APP_VERSION,
   };
 
   logRequest(context, 200, 'success');
