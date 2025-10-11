@@ -6,7 +6,7 @@ This guide shows how to integrate the ChatKit widget into your WordPress site us
 
 - Deployed ChatKit Token Service on Cloudflare Workers
 - WordPress site with admin access
-- Worker URL (e.g., `https://chatkit-token-service.your-subdomain.workers.dev`)
+- Worker URL (e.g., `https://chatkit.beepi.no`)
 
 ---
 
@@ -18,7 +18,7 @@ Add this code to your theme's `footer.php` or use the `wp_footer` action hook:
 <!-- ChatKit Integration -->
 <script type="module">
   // Configuration - Update with your deployed Worker URL
-  const CHATKIT_WORKER_URL = 'https://chatkit-token-service.your-subdomain.workers.dev';
+  const CHATKIT_WORKER_URL = 'https://chatkit.beepi.no';
   
   // Session management
   let currentSession = null;
@@ -150,7 +150,7 @@ function chatkit_add_scripts() {
     }
     
     // Get Worker URL from WordPress options or define it here
-    $worker_url = get_option('chatkit_worker_url', 'https://your-worker.workers.dev');
+    $worker_url = get_option('chatkit_worker_url', 'https://chatkit.beepi.no');
     
     ?>
     <script type="module">
@@ -230,7 +230,7 @@ function chatkit_settings_page() {
                                name="chatkit_worker_url" 
                                value="<?php echo esc_attr($worker_url); ?>" 
                                class="regular-text" 
-                               placeholder="https://your-worker.workers.dev">
+                               placeholder="https://chatkit.beepi.no">
                         <p class="description">Your Cloudflare Worker URL for ChatKit token service</p>
                     </td>
                 </tr>
@@ -282,7 +282,7 @@ npm run deploy
 
 - Verify `ALLOWED_ORIGINS` in `wrangler.toml` under `[vars]` includes your domain
 - Check that domain matches exactly (https vs http, www vs non-www)
-- Test CORS with: `curl -X OPTIONS https://your-worker.workers.dev/api/chatkit/start -H "Origin: https://yoursite.com" -v`
+- Test CORS with: `curl -X OPTIONS https://chatkit.beepi.no/api/chatkit/start -H "Origin: https://yoursite.com" -v`
 
 ### "Failed to get token" errors
 

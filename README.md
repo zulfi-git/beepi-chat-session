@@ -109,7 +109,7 @@ Deploy to production:
 npm run deploy
 ```
 
-After deployment, your worker will be available at `https://chatkit-token-service.<your-subdomain>.workers.dev`
+After deployment, your worker will be available at `https://chatkit.beepi.no`
 
 ## Documentation
 
@@ -128,7 +128,7 @@ Create a new ChatKit session.
 
 **Request:**
 ```bash
-curl -X POST https://your-worker.workers.dev/api/chatkit/start \
+curl -X POST https://chatkit.beepi.no/api/chatkit/start \
   -H "Content-Type: application/json" \
   -H "Origin: https://example.com" \
   -d '{}'
@@ -157,7 +157,7 @@ Refresh an existing ChatKit session.
 
 **Request:**
 ```bash
-curl -X POST https://your-worker.workers.dev/api/chatkit/refresh \
+curl -X POST https://chatkit.beepi.no/api/chatkit/refresh \
   -H "Content-Type: application/json" \
   -H "Origin: https://example.com" \
   -d '{"currentClientSecret": "sess_abc123..."}'
@@ -188,7 +188,7 @@ To integrate ChatKit with your WordPress site, see the comprehensive [WordPress 
 
 ```html
 <script type="module">
-  const WORKER_URL = 'https://your-worker.workers.dev';
+  const WORKER_URL = 'https://chatkit.beepi.no';
   let session = null;
   
   async function getClientSecret() {

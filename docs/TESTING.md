@@ -196,7 +196,7 @@ Test your deployed worker:
 
 ```bash
 # Replace with your actual worker URL
-WORKER_URL="https://chatkit-token-service.your-subdomain.workers.dev"
+WORKER_URL="https://chatkit.beepi.no"
 
 # Test session creation
 curl -X POST $WORKER_URL/api/chatkit/start \
