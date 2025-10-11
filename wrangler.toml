@@ -16,7 +16,7 @@ routes = [
 # ALLOWED_ORIGINS: Configure which domains can access your API
 # Uncomment and set your allowed origins (comma-separated):
 [vars]
-ALLOWED_ORIGINS = "https://chatkit.beepi.no"
+ALLOWED_ORIGINS = "https://chatkit.beepi.no,https://beepi.no"
 
 # Secrets - set these using: wrangler secret put SECRET_NAME
 # DO NOT commit actual secret values to version control!
