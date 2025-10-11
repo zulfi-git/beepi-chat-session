@@ -78,6 +78,5 @@ export interface RequestContext {
  */
 export interface HealthResponse {
   status: string;
-  uptime: number;
   version: string;
 }

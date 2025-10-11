@@ -37,10 +37,9 @@ if [ "$HTTP_STATUS" -eq 200 ]; then
   
   # Verify response structure
   STATUS=$(echo "$RESPONSE_BODY" | jq -r '.status')
-  UPTIME=$(echo "$RESPONSE_BODY" | jq -r '.uptime')
   VERSION=$(echo "$RESPONSE_BODY" | jq -r '.version')
   
-  if [ "$STATUS" == "ok" ] && [ "$UPTIME" != "null" ] && [ "$VERSION" != "null" ]; then
+  if [ "$STATUS" == "ok" ] && [ "$VERSION" != "null" ]; then
     echo -e "${GREEN}✓ Response structure is correct${NC}"
   else
     echo -e "${RED}✗ Response structure is incorrect${NC}"

@@ -19,9 +19,6 @@ import {
 import { createChatKitSession, refreshChatKitSession } from './openai';
 import { APP_VERSION } from './constants';
 
-// Worker start time for uptime calculation
-const WORKER_START_TIME = Date.now();
-
 /**
  * Get client IP address from request
  */
@@ -182,12 +179,8 @@ function handleHealth(
   env: Env,
   context: RequestContext
 ): Response {
-  const uptimeMs = Date.now() - WORKER_START_TIME;
-  const uptimeSeconds = Math.floor(uptimeMs / 1000);
-  
   const healthResponse: HealthResponse = {
     status: 'ok',
-    uptime: uptimeSeconds,
     version: APP_VERSION,
   };
 

@@ -208,7 +208,6 @@ logger.info('Session created', {
 {
   "status": "healthy",
   "version": "1.1.0",
-  "uptime": 3600,
   "dependencies": {
     "openai": "healthy",
     "rate_limiter": "healthy"
