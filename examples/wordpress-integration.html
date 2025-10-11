@@ -57,7 +57,7 @@
     <code>&lt;!-- ChatKit Integration --&gt;
 &lt;script type="module"&gt;
   // Configuration - Update with your deployed Worker URL
-  const CHATKIT_WORKER_URL = 'https://chatkit-token-service.your-subdomain.workers.dev';
+  const CHATKIT_WORKER_URL = 'https://chatkit.beepi.no';
   
   // Session management
   let currentSession = null;
@@ -187,7 +187,7 @@ function chatkit_add_scripts() {
     }
     
     // Get Worker URL from WordPress options or define it here
-    $worker_url = get_option('chatkit_worker_url', 'https://your-worker.workers.dev');
+    $worker_url = get_option('chatkit_worker_url', 'https://chatkit.beepi.no');
     
     ?&gt;
     &lt;script type="module"&gt;
@@ -267,7 +267,7 @@ function chatkit_settings_page() {
                                name="chatkit_worker_url" 
                                value="&lt;?php echo esc_attr($worker_url); ?&gt;" 
                                class="regular-text" 
-                               placeholder="https://your-worker.workers.dev"&gt;
+                               placeholder="https://chatkit.beepi.no"&gt;
                         &lt;p class="description"&gt;Your Cloudflare Worker URL for ChatKit token service&lt;/p&gt;
                     &lt;/td&gt;
                 &lt;/tr&gt;
@@ -323,7 +323,7 @@ npm run deploy</code>
   <ul>
     <li>Verify <code>ALLOWED_ORIGINS</code> in <code>wrangler.toml</code> under <code>[vars]</code> includes your domain</li>
     <li>Check that domain matches exactly (https vs http, www vs non-www)</li>
-    <li>Test CORS with: <code>curl -X OPTIONS https://your-worker.workers.dev/api/chatkit/start -H "Origin: https://yoursite.com" -v</code></li>
+    <li>Test CORS with: <code>curl -X OPTIONS https://chatkit.beepi.no/api/chatkit/start -H "Origin: https://yoursite.com" -v</code></li>
   </ul>
 
   <h3>"Failed to get token" errors</h3>
