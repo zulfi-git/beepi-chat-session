@@ -4,16 +4,22 @@ This directory contains all documentation for the ChatKit Token Service project.
 
 ## Quick Navigation
 
+- **[EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md)** - Quick codebase assessment summary (TL;DR)
+- **[CODEBASE-ASSESSMENT.md](CODEBASE-ASSESSMENT.md)** - Comprehensive codebase quality assessment
+- **[WORK-PACKAGES.md](WORK-PACKAGES.md)** - Phased work packages for future improvements
 - **[WORDPRESS-INTEGRATION.md](WORDPRESS-INTEGRATION.md)** - How to integrate ChatKit with your WordPress site
 - **[TESTING.md](TESTING.md)** - Testing guide for local and production environments
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture and system flow diagrams
 - **[CI-CD-SETUP.md](CI-CD-SETUP.md)** - Continuous Integration and Deployment setup
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Guidelines for contributing to this project
 - **[SECRETS.md](SECRETS.md)** - Secrets and environment variable management
-- **[CODEBASE-ASSESSMENT.md](CODEBASE-ASSESSMENT.md)** - Comprehensive codebase quality assessment
-- **[WORK-PACKAGES.md](WORK-PACKAGES.md)** - Phased work packages for future improvements
 
 ## Document Organization
+
+### Assessment & Planning
+- **EXECUTIVE-SUMMARY.md** - Quick overview of code quality and priorities (START HERE!)
+- **CODEBASE-ASSESSMENT.md** - Detailed quality assessment with metrics and analysis
+- **WORK-PACKAGES.md** - Prioritized work packages with implementation guides
 
 ### Integration Guides
 - **WORDPRESS-INTEGRATION.md** - Complete WordPress integration with code examples
@@ -26,8 +32,6 @@ This directory contains all documentation for the ChatKit Token Service project.
 ### Project Management
 - **CONTRIBUTING.md** - Code style, testing requirements, and contribution process
 - **SECRETS.md** - How to manage API keys and secrets in Cloudflare
-- **CODEBASE-ASSESSMENT.md** - Comprehensive code quality assessment and recommendations
-- **WORK-PACKAGES.md** - Prioritized work packages for future development
 
 ## Getting Started
 
@@ -39,11 +43,12 @@ New to the project? Start here:
 4. Check [SECRETS.md](SECRETS.md) for secrets management
 5. Review [ARCHITECTURE.md](ARCHITECTURE.md) to understand how it works
 
-Maintaining or improving the codebase?
+Maintaining or improving the codebase? Start here:
 
-1. Read [CODEBASE-ASSESSMENT.md](CODEBASE-ASSESSMENT.md) for quality assessment
-2. Review [WORK-PACKAGES.md](WORK-PACKAGES.md) for prioritized improvements
-3. Follow [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines
+1. Read [EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md) for quick assessment overview
+2. Review [CODEBASE-ASSESSMENT.md](CODEBASE-ASSESSMENT.md) for detailed quality analysis
+3. Check [WORK-PACKAGES.md](WORK-PACKAGES.md) for prioritized improvements
+4. Follow [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines
 
 ## Contributing to Documentation
 
