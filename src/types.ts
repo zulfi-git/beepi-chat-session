@@ -3,7 +3,6 @@
  */
 export interface Env {
   OPENAI_API_KEY: string;
-  CHATKIT_WORKFLOW_ID: string;
   ALLOWED_ORIGINS?: string;
 }
 

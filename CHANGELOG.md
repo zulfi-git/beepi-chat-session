@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Removed CHATKIT_WORKFLOW_ID requirement**: The workflow ID is no longer sent to the OpenAI Realtime API
+  - Removed `workflow_id` parameter from OpenAI API requests (fixes 400 "Unknown parameter" error)
+  - Removed `CHATKIT_WORKFLOW_ID` from environment configuration
+  - Removed unused `OpenAISessionRequest` interface
+  - Updated documentation to reflect that workflow ID should be set client-side via `workflow-id` attribute on `<openai-chatkit>` element
+  - The Worker now creates generic session tokens that work with any workflow specified client-side
+
 ### Planned
 - Durable Objects integration for distributed rate limiting
 - Enhanced analytics and monitoring
@@ -58,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configurable ALLOWED_ORIGINS for CORS whitelist
 - Comprehensive error handling with JSON error responses
 - Request logging with unique request IDs, outcomes, and latency tracking
-- Environment secrets support (OPENAI_API_KEY, CHATKIT_WORKFLOW_ID, ALLOWED_ORIGINS)
+- Environment secrets support (OPENAI_API_KEY, ALLOWED_ORIGINS)
 - TypeScript implementation with full type safety
 - Wrangler configuration template for Cloudflare Workers deployment
 - Comprehensive README with setup, API reference, and troubleshooting
