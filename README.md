@@ -27,7 +27,6 @@ The service includes:
 - [Cloudflare account](https://dash.cloudflare.com/sign-up)
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/)
 - OpenAI API key with access to Realtime API
-- ChatKit workflow ID from Agent Builder
 
 ## Setup
 
@@ -57,15 +56,13 @@ Use Wrangler to securely set your secrets (these are encrypted and stored in Clo
 # Required: Your OpenAI API key
 wrangler secret put OPENAI_API_KEY
 # When prompted, paste your OpenAI API key
-
-# Required: Your ChatKit workflow ID
-wrangler secret put CHATKIT_WORKFLOW_ID
-# When prompted, paste your workflow ID from Agent Builder
 ```
 
 **Important:** Never commit secrets to version control. The `wrangler.toml` file should only contain non-sensitive configuration.
 
-**Status:** The required secrets (`OPENAI_API_KEY` and `CHATKIT_WORKFLOW_ID`) have been configured in Cloudflare. See [docs/SECRETS.md](docs/SECRETS.md) for details on configured secrets and management instructions.
+**Status:** The required secret (`OPENAI_API_KEY`) has been configured in Cloudflare. See [docs/SECRETS.md](docs/SECRETS.md) for details on configured secrets and management instructions.
+
+**Note:** The ChatKit workflow ID should be set client-side via the `workflow-id` attribute on the `<openai-chatkit>` HTML element, not as a server-side secret.
 
 ### 4. Configure ALLOWED_ORIGINS (Optional)
 

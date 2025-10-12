@@ -23,11 +23,9 @@ ALLOWED_ORIGINS = "https://chatkit.beepi.no,https://beepi.no"
 # 
 # Required secrets:
 # - OPENAI_API_KEY: Your OpenAI API key
-# - CHATKIT_WORKFLOW_ID: Your ChatKit workflow ID from Agent Builder
 #
 # Set secrets with:
 #   wrangler secret put OPENAI_API_KEY
-#   wrangler secret put CHATKIT_WORKFLOW_ID
 
 # Observability configuration (wrangler v3.88.0+)
 [observability]

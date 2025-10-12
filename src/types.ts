@@ -3,7 +3,6 @@
  */
 export interface Env {
   OPENAI_API_KEY: string;
-  CHATKIT_WORKFLOW_ID: string;
   ALLOWED_ORIGINS?: string;
 }
 
@@ -37,13 +36,6 @@ export interface ErrorResponse {
   error: string;
   message: string;
   request_id?: string;
-}
-
-/**
- * OpenAI ChatKit session creation request
- */
-export interface OpenAISessionRequest {
-  workflow_id: string;
 }
 
 /**

@@ -41,7 +41,6 @@
 │                                                                    │
 │  Environment Configuration:                                       │
 │  • OPENAI_API_KEY (secret - never exposed to browser)            │
-│  • CHATKIT_WORKFLOW_ID (secret - your Agent Builder workflow)    │
 │  • ALLOWED_ORIGINS (env var - comma-separated domains)           │
 └────────────────────┬───────────────────────────────────────────────┘
                      │
@@ -54,7 +53,7 @@
 │  • Validates OPENAI_API_KEY                                        │
 │  • Creates short-lived session (client_secret)                     │
 │  • Returns { client_secret, expires_at }                           │
-│  • Session tied to CHATKIT_WORKFLOW_ID                             │
+│  • Session token is generic (workflow applied client-side)         │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -310,7 +309,6 @@ wrangler secret put OPENAI_API_KEY --env staging
 ```bash
 wrangler deploy --env production
 wrangler secret put OPENAI_API_KEY --env production
-wrangler secret put CHATKIT_WORKFLOW_ID --env production
 # Note: ALLOWED_ORIGINS is set in wrangler.toml under [vars], not as a secret
 ```
 

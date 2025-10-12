@@ -12,11 +12,12 @@ The following secrets have been added to Cloudflare Workers and are ready for us
 - **Required**: Yes
 - **Added**: October 2025
 
-### ✅ CHATKIT_WORKFLOW_ID
-- **Status**: Configured
-- **Purpose**: Your ChatKit workflow ID from Agent Builder
-- **Required**: Yes
-- **Added**: October 2025
+### ~~CHATKIT_WORKFLOW_ID~~ (Deprecated)
+- **Status**: No longer used
+- **Purpose**: Previously used for ChatKit workflow ID from Agent Builder
+- **Required**: No - Removed in v1.3.0
+- **Migration**: The workflow ID should now be set client-side via the `workflow-id` attribute on the `<openai-chatkit>` HTML element
+- **Note**: If you have this secret configured in Cloudflare, it can be safely deleted with `wrangler secret delete CHATKIT_WORKFLOW_ID`
 
 ## Non-Secret Configuration
 
@@ -41,9 +42,6 @@ To update an existing secret:
 ```bash
 wrangler secret put OPENAI_API_KEY
 # When prompted, paste your new OpenAI API key
-
-wrangler secret put CHATKIT_WORKFLOW_ID
-# When prompted, paste your new workflow ID
 ```
 
 ### Deleting Secrets
