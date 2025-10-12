@@ -7,20 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-- **Removed CHATKIT_WORKFLOW_ID requirement**: The workflow ID is no longer sent to the OpenAI Realtime API
-  - Removed `workflow_id` parameter from OpenAI API requests (fixes 400 "Unknown parameter" error)
-  - Removed `CHATKIT_WORKFLOW_ID` from environment configuration
-  - Removed unused `OpenAISessionRequest` interface
-  - Updated documentation to reflect that workflow ID should be set client-side via `workflow-id` attribute on `<openai-chatkit>` element
-  - The Worker now creates generic session tokens that work with any workflow specified client-side
-
 ### Planned
 - Durable Objects integration for distributed rate limiting
 - Enhanced analytics and monitoring
 - User authentication support
 - Multiple workflow support
 - Webhook notifications
+
+---
+
+## [1.3.0] - 2025-10-12
+
+### Changed
+- **Removed CHATKIT_WORKFLOW_ID requirement** (PR #73): The workflow ID is no longer sent to the OpenAI Realtime API
+  - Removed `workflow_id` parameter from OpenAI API requests (fixes 400 "Unknown parameter" error)
+  - Removed `CHATKIT_WORKFLOW_ID` from environment configuration
+  - Removed unused `OpenAISessionRequest` interface
+  - Updated documentation to reflect that workflow ID should be set client-side via `workflow-id` attribute on `<openai-chatkit>` element
+  - The Worker now creates generic session tokens that work with any workflow specified client-side
+
+### Documentation
+- Converted `examples/test.html` to `docs/TESTING-INTERACTIVE.md` for better GitHub browsing
+- Updated documentation cross-references
 
 ---
 
@@ -96,6 +104,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
+- **1.3.0** - Workflow ID removal and documentation updates (2025-10-12)
+  - Removed CHATKIT_WORKFLOW_ID requirement (PR #73)
+  - Fixed 400 "Unknown parameter" error from OpenAI API
+  - Workflow ID now set client-side via `workflow-id` attribute
+  - Converted test.html to Markdown for better GitHub browsing
 - **1.2.0** - Documentation housekeeping and fixes (2025-10-12)
   - Fixed unreliable uptime value in health endpoint
   - Archived assessment documents for cleaner structure

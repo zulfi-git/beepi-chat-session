@@ -5,9 +5,10 @@
 # Your OpenAI API key (required)
 OPENAI_API_KEY=sk-...your-api-key-here...
 
-# Your ChatKit workflow ID (required)
-CHATKIT_WORKFLOW_ID=your-workflow-id-here
-
 # Allowed CORS origins (optional, comma-separated)
 # Leave empty to allow all origins in development
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8080
+
+# Note: ChatKit workflow ID should be set client-side via the 'workflow-id' 
+# attribute on the <openai-chatkit> HTML element, not as a server-side secret.
+

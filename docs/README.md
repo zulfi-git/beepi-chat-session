@@ -6,6 +6,7 @@ This directory contains all documentation for the ChatKit Token Service project.
 
 - **[WORDPRESS-INTEGRATION.md](WORDPRESS-INTEGRATION.md)** - How to integrate ChatKit with your WordPress site
 - **[TESTING.md](TESTING.md)** - Testing guide for local and production environments
+- **[TESTING-INTERACTIVE.md](TESTING-INTERACTIVE.md)** - Interactive browser-based testing guide
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture and system flow diagrams
 - **[CI-CD-SETUP.md](CI-CD-SETUP.md)** - Continuous Integration and Deployment setup
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Guidelines for contributing to this project
@@ -19,6 +20,7 @@ This directory contains all documentation for the ChatKit Token Service project.
 ### Technical Documentation
 - **ARCHITECTURE.md** - System architecture, request flow, and security model
 - **TESTING.md** - Manual and automated testing procedures
+- **TESTING-INTERACTIVE.md** - Interactive browser-based testing guide
 - **CI-CD-SETUP.md** - GitHub Actions workflows and Dependabot configuration
 
 ### Project Management

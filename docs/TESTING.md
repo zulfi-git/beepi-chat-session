@@ -4,7 +4,7 @@ This guide describes how to test the ChatKit Token Service locally and in produc
 
 ## Quick Test
 
-Open `examples/test.html` in your browser for interactive testing, or use the automated test script:
+Open `examples/test.html` in your browser for interactive testing (see [TESTING-INTERACTIVE.md](TESTING-INTERACTIVE.md) for detailed guide), or use the automated test script:
 
 ```bash
 ./examples/test.sh
@@ -103,7 +103,7 @@ done
 
 ## Interactive Browser Testing
 
-Open `examples/test.html` in your browser for a visual testing interface.
+Open `examples/test.html` in your browser for a visual testing interface. For comprehensive documentation on the interactive test page, see [TESTING-INTERACTIVE.md](TESTING-INTERACTIVE.md).
 
 ### Configuration
 
