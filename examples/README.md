@@ -13,7 +13,9 @@ Interactive browser-based test page for the ChatKit Token Service.
 3. Configure the Worker URL (default: `http://localhost:8787`)
 4. Click test buttons to verify functionality
 
-**Note:** For documentation on testing, see [../docs/TESTING.md](../docs/TESTING.md)
+**Documentation:** See [../docs/TESTING-INTERACTIVE.md](../docs/TESTING-INTERACTIVE.md) for complete guide with expected responses and troubleshooting.
+
+**Note:** For comprehensive testing documentation, see [../docs/TESTING.md](../docs/TESTING.md)
 
 ### test.sh
 Automated command-line test script using curl.

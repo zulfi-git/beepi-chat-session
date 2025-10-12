@@ -112,6 +112,7 @@ After deployment, your worker will be available at `https://chatkit.beepi.no`
 
 - **[WordPress Integration Guide](docs/WORDPRESS-INTEGRATION.md)** - Integrate ChatKit with your WordPress site
 - **[Testing Guide](docs/TESTING.md)** - Test your deployment locally and in production
+- **[Interactive Testing Guide](docs/TESTING-INTERACTIVE.md)** - Browser-based testing guide
 - **[Architecture Documentation](docs/ARCHITECTURE.md)** - System architecture and technical details
 - **[CI/CD Setup](docs/CI-CD-SETUP.md)** - Automated testing and deployment
 - **[Contributing Guidelines](docs/CONTRIBUTING.md)** - How to contribute to this project
@@ -321,6 +322,7 @@ Check that:
 │   ├── CONTRIBUTING.md    # Contributing guidelines
 │   ├── SECRETS.md         # Secrets management documentation
 │   ├── TESTING.md         # Testing guide
+│   ├── TESTING-INTERACTIVE.md  # Interactive browser testing guide
 │   └── WORDPRESS-INTEGRATION.md  # WordPress integration guide
 ├── examples/
 │   ├── test.html          # Interactive browser test page
