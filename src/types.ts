@@ -40,13 +40,6 @@ export interface ErrorResponse {
 }
 
 /**
- * OpenAI ChatKit session creation request
- */
-export interface OpenAISessionRequest {
-  workflow_id: string;
-}
-
-/**
  * OpenAI ChatKit session response
  */
 export interface OpenAISessionResponse {
