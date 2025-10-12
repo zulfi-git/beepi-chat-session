@@ -54,6 +54,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2025-10-12
+
+### Fixed
+- Fixed unreliable uptime value in health endpoint (PR #67)
+  - Removed uptime calculation that was causing inconsistent values
+  - Health endpoint now returns only status and version
+
+### Changed
+- **Documentation Housekeeping**: Streamlined documentation for one-person project
+  - Archived assessment documents (EXECUTIVE-SUMMARY.md, CODEBASE-ASSESSMENT.md, WORK-PACKAGES.md) to `/docs/archive`
+  - Removed redundant `examples/wordpress-integration.html` (Markdown version available in docs)
+  - Updated documentation cross-references
+  - Kept only essential, practical documentation
+
+### Updated
+- Updated version to 1.2.0
+
+---
+
 ## [1.1.0] - 2025-10-10
 
 ### Changed
@@ -76,6 +95,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
+- **1.2.0** - Documentation housekeeping and fixes (2025-10-12)
+  - Fixed unreliable uptime value in health endpoint
+  - Archived assessment documents for cleaner structure
+  - Removed redundant HTML documentation
 - **1.1.0** - Documentation housekeeping (2025-10-10)
   - Reorganized all documentation into `/docs` directory
   - Converted HTML docs to Markdown format

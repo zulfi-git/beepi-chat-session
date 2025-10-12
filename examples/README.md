@@ -30,16 +30,6 @@ Tests covered:
 - CORS handling
 - Error responses
 
-### wordpress-integration.html
-Interactive reference guide for WordPress integration (HTML version).
-
-**Note:** The markdown version is now the primary documentation. See [../docs/WORDPRESS-INTEGRATION.md](../docs/WORDPRESS-INTEGRATION.md)
-
-This HTML file is kept for:
-- Local browsing with styling
-- Print/PDF export if needed
-- Interactive reference during development
-
 ---
 
 **Tip:** For complete documentation, see the [../docs/](../docs/) directory.
