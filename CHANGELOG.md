@@ -5,6 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Planned
+- Durable Objects integration for distributed rate limiting
+- Enhanced analytics and monitoring
+- User authentication support
+- Multiple workflow support
+- Webhook notifications
+
+---
+
+## [1.2.0] - 2025-10-12
+
+### Fixed
+- Fixed unreliable uptime value in health endpoint (PR #67)
+  - Removed uptime calculation that was causing inconsistent values
+  - Health endpoint now returns only status and version
+
+### Changed
+- **Documentation Housekeeping**: Streamlined documentation for one-person project
+  - Archived assessment documents (EXECUTIVE-SUMMARY.md, CODEBASE-ASSESSMENT.md, WORK-PACKAGES.md) to `/docs/archive`
+  - Removed redundant `examples/wordpress-integration.html` (Markdown version available in docs)
+  - Updated documentation cross-references
+  - Kept only essential, practical documentation
+
+---
+
+## [1.1.0] - 2025-10-10
+
+### Changed
+- **Documentation Restructure**: Reorganized documentation for better clarity
+  - Created `/docs` directory for all documentation
+  - Moved `ARCHITECTURE.md`, `CI-CD-SETUP.md`, `CONTRIBUTING.md`, and `SECRETS.md` to `/docs`
+  - Converted HTML examples to Markdown for better GitHub browsing
+  - Created `docs/WORDPRESS-INTEGRATION.md` (converted from `examples/wordpress-integration.html`)
+  - Created `docs/TESTING.md` (converted from `examples/test.html`)
+  - Removed redundant `QUICKSTART.md` (content covered in README)
+  - Streamlined documentation to be concise and practical
+
+---
+
 ## [1.0.0] - 2024-01-01
 
 ### Added
@@ -43,39 +84,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Troubleshooting guide
 - Development and deployment instructions
 
-## [Unreleased]
-
-### Planned
-- Durable Objects integration for distributed rate limiting
-- Enhanced analytics and monitoring
-- User authentication support
-- Multiple workflow support
-- Webhook notifications
-
 ---
-
-## [1.1.0] - 2025-10-10
-
-### Changed
-- **Documentation Restructure**: Reorganized documentation for better clarity
-  - Created `/docs` directory for all documentation
-  - Moved `ARCHITECTURE.md`, `CI-CD-SETUP.md`, `CONTRIBUTING.md`, and `SECRETS.md` to `/docs`
-  - Converted HTML examples to Markdown for better GitHub browsing
-  - Created `docs/WORDPRESS-INTEGRATION.md` (converted from `examples/wordpress-integration.html`)
-  - Created `docs/TESTING.md` (converted from `examples/test.html`)
-  - Removed redundant `QUICKSTART.md` (content covered in README)
-  - Streamlined documentation to be concise and practical
-
-### Updated
-- Updated version to 1.1.0
-- Updated documentation cross-references to reflect new structure
-
----
-
-## [1.0.0] - 2024-01-01
 
 ## Version History
 
+- **1.2.0** - Documentation housekeeping and fixes (2025-10-12)
+  - Fixed unreliable uptime value in health endpoint
+  - Archived assessment documents for cleaner structure
+  - Removed redundant HTML documentation
 - **1.1.0** - Documentation housekeeping (2025-10-10)
   - Reorganized all documentation into `/docs` directory
   - Converted HTML docs to Markdown format
