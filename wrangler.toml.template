@@ -28,15 +28,15 @@ compatibility_date = "2024-01-01"
 # 
 # Required secrets:
 # - OPENAI_API_KEY: Your OpenAI API key
-# - CHATKIT_WORKFLOW_ID: Your ChatKit workflow ID from Agent Builder
 # 
-# Optional secrets:
+# Optional environment variables (can be set in [vars] section above):
 # - ALLOWED_ORIGINS: Comma-separated list of allowed CORS origins
+#
+# Note: ChatKit workflow ID should be set client-side via the 'workflow-id' 
+# attribute on the <openai-chatkit> HTML element, not as a server-side secret.
 #
 # Set secrets with:
 #   wrangler secret put OPENAI_API_KEY
-#   wrangler secret put CHATKIT_WORKFLOW_ID
-#   wrangler secret put ALLOWED_ORIGINS
 
 # Observability configuration (wrangler v3.88.0^)
 [observability]
